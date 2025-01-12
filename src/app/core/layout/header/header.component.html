@@ -1,0 +1,23 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+    <span class="title">Dynamic Chips Lookup</span>
+
+    <div class="flex gap-2">
+      @for (link of links(); track link.path) {
+        <button
+          pButton
+          [routerLink]="link.path"
+          routerLinkActive="p-button-outlined"
+          [label]="link.label"
+          class="p-button-text">
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="p-toolbar-group-end">
+    <router-outlet name="actions"></router-outlet>
+    <span class="user-name">John Doe</span>
+    <i class="pi pi-user"></i>
+  </div>
+</p-toolbar>

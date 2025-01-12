@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LayoutComponent } from './core/layout/layout/layout.component';
+import { NavLink } from './core/layout/interfaces/link';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, LayoutComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  title = 'dynamic-chips-lookup';
+  links: NavLink[] = [
+    { path: 'users', label: 'Users' },
+    { path: 'products', label: 'Products' }
+  ];
 }
