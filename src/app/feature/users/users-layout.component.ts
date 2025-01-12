@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FeatureLayoutComponent } from '../../shared/components/feature-layout/feature-layout.component';
 import { ManageUsersSidebarComponent } from './containers/manage-users-sidebar/manage-users-sidebar.component';
@@ -6,6 +6,9 @@ import { UsersState } from './state/users-state.service';
 import { UsersServiceBusService } from './services/users-service-bus.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { UsersApiService } from './services/users-api.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-users-layout',
@@ -30,11 +33,17 @@ import { ToastModule } from 'primeng/toast';
   providers: [UsersState, MessageService]
 })
 export class UsersLayoutComponent {
+  private readonly destroyRef = inject(DestroyRef);
   private readonly serviceBus = inject(UsersServiceBusService);
   private readonly messageService = inject(MessageService);
-
+  private readonly usersApi = inject(UsersApiService);
+  private readonly usersState = inject(UsersState);
   ngOnInit(): void {
-    this.serviceBus.refresh$.subscribe(() => {
+    this.usersApi.getUsers().pipe(take(1), takeUntilDestroyed(this.destroyRef)).subscribe((users) => {
+      this.usersState.setUsers(users);
+    });
+
+    this.serviceBus.refresh$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.messageService.add({
         severity: 'info',
         summary: 'Refresh',
@@ -42,7 +51,7 @@ export class UsersLayoutComponent {
       });
     });
 
-    this.serviceBus.info$.subscribe(() => {
+    this.serviceBus.info$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.messageService.add({
         severity: 'info',
         summary: 'Info',
@@ -50,7 +59,7 @@ export class UsersLayoutComponent {
       });
     });
 
-    this.serviceBus.create$.subscribe(() => {
+    this.serviceBus.create$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.messageService.add({
         severity: 'success',
         summary: 'Create',
