@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+}
+
+.separator {
+  border-left: 1px solid var(--p-surface-0);
+  margin: 0 1rem;
+}

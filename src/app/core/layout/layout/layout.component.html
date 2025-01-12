@@ -1,18 +1,7 @@
-<div class="layout-wrapper">
-  <app-header class="layout-header"></app-header>
+<app-header [links]="links()" class="layout-header"></app-header>
 
-  @let hasSidebar = 'sidebar' | hasOutlet;
-  <div class="layout-content" [class.has-sidebar]="hasSidebar">
-    @if (hasSidebar) {
-      <div class="layout-sidebar">
-        @defer {
-          <router-outlet name="sidebar"></router-outlet>
-        }
-      </div>
-    }
-
-    <div class="layout-main">
-      <router-outlet></router-outlet>
-    </div>
+@defer {
+  <div class="layout-content">
+    <ng-content></ng-content>
   </div>
-</div>
+}

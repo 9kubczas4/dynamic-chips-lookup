@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { UsersState } from '../../state/users-state.service';
 
 @Component({
   selector: 'app-manage-users-sidebar',
@@ -8,5 +9,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ManageUsersSidebarComponent {
-
+  private readonly usersState = inject(UsersState);
 }

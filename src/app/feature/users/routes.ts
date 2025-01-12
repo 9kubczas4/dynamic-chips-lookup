@@ -1,15 +1,23 @@
 import { Routes } from "@angular/router";
 import { UsersListComponent } from "./containers/users-list/users-list.component";
-import { ManageUsersSidebarComponent } from "./containers/manage-users-sidebar/manage-users-sidebar.component";
+import { UsersActionsComponent } from "./components/users-actions/users-actions.component";
+import { UsersLayoutComponent } from "./users-layout.component";
 
 export const routes: Routes = [
   {
     path: '',
-    component: UsersListComponent
+    loadComponent: () => import('./users-layout.component').then(c => c.UsersLayoutComponent),
+    children: [
+      {
+        path: '',
+        component: UsersListComponent
+      },
+
+    ]
   },
   {
     path: '',
-    component: ManageUsersSidebarComponent,
-    outlet: 'sidebar'
+    component: UsersActionsComponent,
+    outlet: 'actions'
   }
 ];

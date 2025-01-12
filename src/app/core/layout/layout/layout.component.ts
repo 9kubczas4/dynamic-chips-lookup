@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { RouterOutlet } from '@angular/router';
-import { HasOutletPipe } from '../../../shared/pipes/has-outlet';
+import { NavLink } from '../interfaces/link';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  imports: [HeaderComponent, HasOutletPipe, RouterOutlet],
+  imports: [HeaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LayoutComponent {}
+export class LayoutComponent {
+  links = input.required<NavLink[]>();
+}
