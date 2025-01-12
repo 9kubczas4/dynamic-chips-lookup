@@ -1,0 +1,20 @@
+.layout-content {
+  display: flex;
+  margin-top: 4rem;
+  flex: 1;
+}
+
+.layout-content:not(.has-sidebar) .layout-main {
+  width: 100%;
+}
+
+.layout-sidebar {
+  width: 300px;
+  min-width: 300px;
+  background-color: var(--surface-section);
+  border-right: 1px solid var(--surface-border);
+
+  @media screen and (min-width: 1500px) {
+    width: 20%;
+  }
+}
