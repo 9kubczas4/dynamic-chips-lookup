@@ -30,7 +30,7 @@ import { take } from 'rxjs';
       }
     `
   ],
-  providers: [UsersState, MessageService]
+  providers: [UsersState, UsersApiService, MessageService]
 })
 export class UsersLayoutComponent {
   private readonly destroyRef = inject(DestroyRef);

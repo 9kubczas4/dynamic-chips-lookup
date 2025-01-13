@@ -1,1 +1,50 @@
-<p>manage-users-sidebar works!</p>
+<p-card header="Create User">
+  <form [formGroup]="userForm" class="flex flex-column gap-3">
+    <div class="field">
+      <label for="firstName">First Name</label>
+      <input id="firstName" type="text" pInputText formControlName="firstName" class="w-full">
+    </div>
+
+    <div class="field">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" type="text" pInputText formControlName="lastName" class="w-full">
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" pInputText formControlName="email" class="w-full">
+    </div>
+
+    <div class="field">
+      <label for="phone">Phone</label>
+      <input id="phone" type="tel" pInputText formControlName="phone" class="w-full">
+    </div>
+
+    <div class="field">
+      <label for="address">Address</label>
+      <input id="address" type="text" pInputText formControlName="address" class="w-full">
+    </div>
+
+    <div class="field">
+      <label for="city">City</label>
+      <input id="city" type="text" pInputText formControlName="city" class="w-full">
+    </div>
+
+    <div class="field">
+      <label for="state">State</label>
+      <input id="state" type="text" pInputText formControlName="state" class="w-full">
+    </div>
+
+    <div class="field">
+      <label for="zip">ZIP Code</label>
+      <input id="zip" type="text" pInputText formControlName="zip" class="w-full">
+    </div>
+
+    <footer class="flex justify-content-end gap-2">
+      <button pButton type="button" label="Cancel" class="p-button-text">
+      </button>
+      <button pButton type="submit" label="Save" [disabled]="!userForm.valid" (click)="onSubmit()">
+      </button>
+    </footer>
+  </form>
+</p-card>
