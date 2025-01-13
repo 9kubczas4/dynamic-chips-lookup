@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
-import { Observable, of } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
+import { UsersState } from '../state/users-state.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UsersApiService {
+  private readonly usersState = inject(UsersState);
+
   private firstNames = [
     'James', 'Emma', 'Liam', 'Olivia', 'Noah',
     'Ava', 'William', 'Sophia', 'Lucas', 'Isabella',
@@ -83,6 +84,20 @@ export class UsersApiService {
         state: state.abbr,
         zip: this.generateZipCode()
       };
-    }));
+    })).pipe(
+      tap((users) => this.usersState.setUsers(users))
+    );
+  }
+
+  createUser(user: Omit<User, 'id'>): Observable<User> {
+    const newUser: User = {
+      ...user,
+      id: `user-${Date.now()}`  // Generate a unique ID
+    };
+
+    this.usersState.addUser(newUser);
+
+    // In a real app, this would be an HTTP POST request
+    return of(newUser);
   }
 }
