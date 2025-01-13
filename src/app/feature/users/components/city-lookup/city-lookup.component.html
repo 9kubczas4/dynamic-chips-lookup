@@ -1,0 +1,12 @@
+<div class="flex flex-wrap gap-2">
+  @for (city of cities; track city) {
+    <p-chip
+      [label]="city"
+      [class.selected]="city === value"
+      (click)="selectCity(city)"
+      [style.cursor]="'pointer'"
+      [style.background]="city === value ? 'var(--primary-color)' : ''"
+      [style.color]="city === value ? 'white' : ''">
+    </p-chip>
+  }
+</div>

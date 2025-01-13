@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep {
+  .p-chip {
+    transition: all 0.2s;
+
+    &:hover {
+      background: var(--primary-100);
+    }
+
+    &.selected {
+      transform: scale(1.05);
+    }
+  }
+}
