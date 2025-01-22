@@ -1,0 +1,39 @@
+:host {
+  display: block;
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-height: 4.5rem; /* Approximately 2 rows */
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.chips-container.expanded {
+  max-height: none;
+}
+
+:host ::ng-deep {
+  .p-chip {
+    transition: all 0.2s;
+    margin: 0;
+
+    &:hover {
+      background: var(--primary-100);
+    }
+
+    &.selected {
+      transform: scale(1.05);
+    }
+  }
+
+  .expand-chip {
+    background: var(--surface-ground);
+
+    &:hover {
+      background: var(--surface-hover);
+    }
+  }
+}

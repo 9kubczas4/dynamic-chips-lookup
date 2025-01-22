@@ -8,6 +8,7 @@ import { UsersApiService } from '../../services/users-api.service';
 import { User } from '../../interfaces/user';
 import { finalize } from 'rxjs';
 import { take } from 'rxjs';
+import { CityLookupComponent } from '../../components/city-lookup/city-lookup.component';
 
 @Component({
   selector: 'app-manage-users-sidebar',
@@ -15,7 +16,8 @@ import { take } from 'rxjs';
     ReactiveFormsModule,
     InputTextModule,
     ButtonModule,
-    CardModule
+    CardModule,
+    CityLookupComponent
   ],
   templateUrl: './manage-users-sidebar.component.html',
   styleUrl: './manage-users-sidebar.component.scss',

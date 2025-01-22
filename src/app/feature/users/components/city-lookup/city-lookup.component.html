@@ -1,0 +1,21 @@
+<div class="chips-container" [class.expanded]="isExpanded()" #container>
+  @for (city of visibleCities(); track city) {
+    <p-chip
+      [label]="city"
+      [class.selected]="city === value"
+      (click)="selectCity(city)"
+      [style.cursor]="'pointer'"
+      [style.background]="city === value ? 'var(--primary-color)' : ''"
+      [style.color]="city === value ? 'white' : ''">
+    </p-chip>
+  }
+
+  @if (!isExpanded() && hasMoreCities()) {
+    <p-chip
+      label="..."
+      (click)="expand()"
+      [style.cursor]="'pointer'"
+      styleClass="expand-chip">
+    </p-chip>
+  }
+</div>
