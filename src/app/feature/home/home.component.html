@@ -1,0 +1,23 @@
+@if (recentPages.length) {
+  <section class="recent-pages">
+    <h2>Recently Visited</h2>
+    <div class="grid">
+      @for (page of recentPages; track page) {
+        <div class="card">
+          <a [routerLink]="['/', page]">{{ page | titlecase }}</a>
+        </div>
+      }
+    </div>
+  </section>
+}
+
+<section class="features">
+  <h2>Features</h2>
+  <div class="grid">
+    @for (feature of features; track feature) {
+      <div class="card">
+        <a [routerLink]="['/', feature]">{{ feature | titlecase }}</a>
+      </div>
+    }
+  </div>
+</section>

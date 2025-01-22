@@ -10,5 +10,5 @@ import { NavLink } from '../interfaces/link';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LayoutComponent {
-  links = input.required<NavLink[]>();
+  links = input<NavLink[]>();
 }
