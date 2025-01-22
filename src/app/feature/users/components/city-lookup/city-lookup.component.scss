@@ -37,6 +37,10 @@
 
   .expand-chip {
     background: var(--surface-ground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; // 40px is the width of the expand chip
 
     &:hover {
       background: var(--surface-hover);

@@ -47,7 +47,6 @@ export class CityLookupComponent  implements ControlValueAccessor, AfterViewInit
     this.observer = new ResizeObserver(() => {
       if (this.isExpanded()) return;
 
-      // Get all chip elements
       const chips = container.querySelectorAll('.p-chip');
       if (!chips.length) return;
 
@@ -55,23 +54,43 @@ export class CityLookupComponent  implements ControlValueAccessor, AfterViewInit
       const chipHeight = chips[0].getBoundingClientRect().height;
       const maxRows = 3;
       const maxY = containerRect.top + (chipHeight * maxRows);
+      const EXPAND_CHIP_WIDTH = 40;
+      const GAP = 8; // .5rem = 8px
 
       let visibleChips = 0;
+      let currentRowWidth = 0;
+      let currentRowY = chips[0].getBoundingClientRect().top;
 
-      // Count chips that fit within two rows
+      // Count chips that fit within rows
       for (let i = 0; i < chips.length; i++) {
         const chip = chips[i];
         const chipRect = chip.getBoundingClientRect();
 
-        if (chipRect.bottom <= maxY) {
-          visibleChips++;
-        } else {
+        // Check if we're starting a new row
+        if (chipRect.top > currentRowY) {
+          currentRowWidth = 0;
+          currentRowY = chipRect.top;
+        }
+
+        // Check if chip is within height bounds
+        if (chipRect.bottom > maxY) {
           break;
         }
+
+        // Check if adding this chip + expand chip would exceed container width
+        const isLastRow = chipRect.bottom > (maxY - chipHeight);
+        if (isLastRow) {
+          const wouldExceedWidth = (currentRowWidth + chipRect.width + EXPAND_CHIP_WIDTH + GAP) > containerRect.width;
+          if (wouldExceedWidth) {
+            break;
+          }
+        }
+
+        currentRowWidth += chipRect.width + GAP;
+        visibleChips++;
       }
 
-      // Subtract 1 to make room for the "..." chip
-      this.visibleCount.set(Math.max(0, visibleChips - 1));
+      this.visibleCount.set(visibleChips);
       this.isInitialized.set(true);
     });
 
