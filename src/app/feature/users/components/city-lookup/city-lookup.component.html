@@ -1,4 +1,7 @@
-<div class="chips-container" [class.expanded]="isExpanded()" #container>
+<div class="chips-container"
+     [class.expanded]="isExpanded()"
+     [class.initialized]="isInitialized()"
+     #container>
   @for (city of visibleCities(); track city) {
     <p-chip
       [label]="city"

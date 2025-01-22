@@ -30,6 +30,7 @@ export class CityLookupComponent  implements ControlValueAccessor, AfterViewInit
   disabled = false;
   isExpanded = signal(false);
   visibleCount = signal(this.cities.length);
+  isInitialized = signal(false);
 
   private observer: ResizeObserver | null = null;
   private onChange: (value: string | null) => void = () => {};
@@ -71,6 +72,7 @@ export class CityLookupComponent  implements ControlValueAccessor, AfterViewInit
 
       // Subtract 1 to make room for the "..." chip
       this.visibleCount.set(Math.max(0, visibleChips - 1));
+      this.isInitialized.set(true);
     });
 
     this.observer.observe(container);

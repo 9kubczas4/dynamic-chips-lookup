@@ -9,6 +9,12 @@
   max-height: 4.5rem; /* Approximately 2 rows */
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+
+  &.initialized {
+    opacity: 1;
+  }
 }
 
 .chips-container.expanded {
