@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, forwardRef, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, forwardRef, inject, signal, OnDestroy } from '@angular/core';
 import { ChipModule } from 'primeng/chip';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -16,7 +16,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   templateUrl: './city-lookup.component.html',
   styleUrls: ['./city-lookup.component.scss']
 })
-export class CityLookupComponent  implements ControlValueAccessor, AfterViewInit {
+export class CityLookupComponent  implements ControlValueAccessor, AfterViewInit, OnDestroy {
   private readonly elementRef = inject(ElementRef);
 
   cities = [
@@ -77,7 +77,10 @@ export class CityLookupComponent  implements ControlValueAccessor, AfterViewInit
   }
 
   ngOnDestroy() {
-    this.observer?.disconnect();
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
   }
 
   visibleCities() {
