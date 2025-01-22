@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, forwardRef, inject, signal, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, forwardRef, inject, signal, OnDestroy, computed } from '@angular/core';
 import { ChipModule } from 'primeng/chip';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -31,6 +31,10 @@ export class CityLookupComponent  implements ControlValueAccessor, AfterViewInit
   isExpanded = signal(false);
   visibleCount = signal(this.cities.length);
   isInitialized = signal(false);
+
+  hasMoreCities = computed(() =>
+    !this.isExpanded() && this.cities.length > this.visibleCount()
+  );
 
   private observer: ResizeObserver | null = null;
   private onChange: (value: string | null) => void = () => {};
@@ -106,10 +110,6 @@ export class CityLookupComponent  implements ControlValueAccessor, AfterViewInit
 
   visibleCities() {
     return this.isExpanded() ? this.cities : this.cities.slice(0, this.visibleCount());
-  }
-
-  hasMoreCities() {
-    return this.cities.length > this.visibleCount();
   }
 
   expand() {
