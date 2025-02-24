@@ -5,4 +5,5 @@ export const FEATURES = {
   products: 'products',
   shops: 'shops',
   orders: 'orders',
+  colorPickerDemo: 'color-picker-demo',
 };

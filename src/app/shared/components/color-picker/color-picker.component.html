@@ -1,0 +1,25 @@
+<div class="color-picker-container">
+  <ng-container *ngIf="!selectedColor">
+    <button pButton type="button" label="Pick Color" (click)="openDialog()"></button>
+  </ng-container>
+
+  <div *ngIf="selectedColor" class="selected-color-container">
+    <div class="color-preview" [style.background-color]="selectedColor"></div>
+    <button pButton type="button" icon="pi pi-pencil" (click)="openDialog()"></button>
+  </div>
+</div>
+
+<p-dialog
+  [(visible)]="isDialogVisible"
+  header="Select Color"
+  [modal]="true"
+  [style]="{width: '400px'}"
+  [closable]="true">
+
+  <p-colorPicker [(ngModel)]="tempColor" [inline]="true"></p-colorPicker>
+
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Cancel" (click)="onCancel()" class="p-button-secondary"></button>
+    <button pButton type="button" label="Select Color" (click)="onSelect()" class="p-button-primary"></button>
+  </ng-template>
+</p-dialog>

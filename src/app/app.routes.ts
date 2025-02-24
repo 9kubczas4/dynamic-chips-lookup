@@ -33,4 +33,9 @@ export const routes: Routes = [
     canActivate: [pageTrackerGuard],
     loadChildren: () => import('./feature/orders/routes').then(m => m.routes)
   },
+  {
+    path: FEATURES.colorPickerDemo,
+    canActivate: [pageTrackerGuard],
+    loadComponent: () => import('./feature/color-picker-demo/containers/color-picker-demo/color-picker-demo.component').then(m => m.ColorPickerDemoComponent)
+  }
 ];
