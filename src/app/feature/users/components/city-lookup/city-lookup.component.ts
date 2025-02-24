@@ -51,11 +51,11 @@ export class CityLookupComponent implements ControlValueAccessor, AfterViewInit 
   private onChange: (value: string | null) => void = () => {};
   private onTouched: () => void = () => {};
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.setupResizeObserver();
   }
 
-  private setupResizeObserver() {
+  private setupResizeObserver(): void {
     const container = this.elementRef.nativeElement.querySelector('.chips-container');
     if (!container) return;
 
@@ -92,19 +92,19 @@ export class CityLookupComponent implements ControlValueAccessor, AfterViewInit 
     this.observer.observe(container);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.observer?.disconnect();
   }
 
-  visibleCities() {
+  visibleCities(): string[] {
     return this.isExpanded() ? this.cities : this.cities.slice(0, this.visibleCount());
   }
 
-  hasMoreCities() {
+  hasMoreCities(): boolean {
     return this.cities.length > this.visibleCount();
   }
 
-  expand() {
+  expand(): void {
     this.isExpanded.set(true);
   }
 

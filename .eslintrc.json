@@ -30,7 +30,7 @@
     },
     {
       "files": ["*.html"],
-      "extends": ["plugin:prettier/recommended"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
     }
   ]

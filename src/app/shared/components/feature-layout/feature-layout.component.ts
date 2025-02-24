@@ -8,5 +8,5 @@ import { Component, input, TemplateRef } from '@angular/core';
   styleUrl: './feature-layout.component.scss',
 })
 export class FeatureLayoutComponent {
-  sidebar = input<TemplateRef<any>>();
+  sidebar = input<TemplateRef<unknown>>();
 }
