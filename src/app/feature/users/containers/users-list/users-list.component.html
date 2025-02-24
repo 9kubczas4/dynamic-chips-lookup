@@ -1,33 +1,33 @@
 <p-table
-      [value]="users()"
-      [tableStyle]="{ 'min-width': '50rem' }"
-      [paginator]="true"
-      [rows]="25"
-      [showCurrentPageReport]="true"
-      [rowsPerPageOptions]="[10, 25, 50]"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [scrollable]="true"
-      scrollHeight="calc(100vh - 200px)">
+  [value]="users()"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [paginator]="true"
+  [rows]="25"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [scrollable]="true"
+  scrollHeight="calc(100vh - 200px)"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+    </tr>
+  </ng-template>
 
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Address</th>
-          <th>City</th>
-          <th>State</th>
-        </tr>
-      </ng-template>
-
-      <ng-template pTemplate="body" let-user>
-        <tr>
-          <td>{{user.firstName}} {{user.lastName}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.phone}}</td>
-          <td>{{user.address}}</td>
-          <td>{{user.city}}</td>
-          <td>{{user.state}}</td>
-        </tr>
-      </ng-template>
-    </p-table>
+  <ng-template pTemplate="body" let-user>
+    <tr>
+      <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phone }}</td>
+      <td>{{ user.address }}</td>
+      <td>{{ user.city }}</td>
+      <td>{{ user.state }}</td>
+    </tr>
+  </ng-template>
+</p-table>
