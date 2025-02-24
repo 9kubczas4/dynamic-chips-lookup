@@ -8,7 +8,7 @@ import { TitleCasePipe } from '@angular/common';
   selector: 'app-home',
   imports: [RouterLink, TitleCasePipe],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   private recentPagesService = inject(RecentPagesService);

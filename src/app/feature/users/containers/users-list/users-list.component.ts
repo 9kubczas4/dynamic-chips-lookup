@@ -7,7 +7,7 @@ import { TableModule } from 'primeng/table';
   imports: [TableModule],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersListComponent {
   private readonly usersState = inject(UsersState);

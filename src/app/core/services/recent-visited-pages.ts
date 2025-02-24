@@ -5,7 +5,7 @@ const RECENT_PAGES_KEY = 'recentPages';
 const MAX_RECENT_PAGES = 3;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecentPagesService {
   private storage = inject(LOCAL_STORAGE);

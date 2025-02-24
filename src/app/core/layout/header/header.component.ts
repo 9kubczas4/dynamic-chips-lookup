@@ -9,7 +9,7 @@ import { NavLink } from '../interfaces/link';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   imports: [RouterModule, ToolbarModule, ButtonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   links = input.required<NavLink[]>();

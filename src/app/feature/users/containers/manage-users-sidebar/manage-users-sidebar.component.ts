@@ -12,16 +12,10 @@ import { CityLookupComponent } from '../../components/city-lookup/city-lookup.co
 
 @Component({
   selector: 'app-manage-users-sidebar',
-  imports: [
-    ReactiveFormsModule,
-    InputTextModule,
-    ButtonModule,
-    CardModule,
-    CityLookupComponent
-  ],
+  imports: [ReactiveFormsModule, InputTextModule, ButtonModule, CardModule, CityLookupComponent],
   templateUrl: './manage-users-sidebar.component.html',
   styleUrl: './manage-users-sidebar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManageUsersSidebarComponent {
   private readonly usersService = inject(UsersApiService);
@@ -34,15 +28,18 @@ export class ManageUsersSidebarComponent {
     address: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required],
-    zip: ['', Validators.required]
+    zip: ['', Validators.required],
   });
 
   onSubmit(): void {
     if (this.userForm.valid) {
-      this.usersService.createUser(this.userForm.value as Omit<User, 'id'>).pipe(
-        take(1),
-        finalize(() => this.userForm.reset())
-      ).subscribe();
+      this.usersService
+        .createUser(this.userForm.value as Omit<User, 'id'>)
+        .pipe(
+          take(1),
+          finalize(() => this.userForm.reset())
+        )
+        .subscribe();
     }
   }
 }

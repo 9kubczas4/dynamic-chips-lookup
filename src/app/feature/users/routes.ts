@@ -1,7 +1,7 @@
-import { Routes } from "@angular/router";
-import { UsersListComponent } from "./containers/users-list/users-list.component";
-import { UsersActionsComponent } from "./components/users-actions/users-actions.component";
-import { UsersLayoutComponent } from "./users-layout.component";
+import { Routes } from '@angular/router';
+import { UsersListComponent } from './containers/users-list/users-list.component';
+import { UsersActionsComponent } from './components/users-actions/users-actions.component';
+import { UsersLayoutComponent } from './users-layout.component';
 
 export const routes: Routes = [
   {
@@ -10,14 +10,13 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: UsersListComponent
+        component: UsersListComponent,
       },
-
-    ]
+    ],
   },
   {
     path: '',
     component: UsersActionsComponent,
-    outlet: 'actions'
-  }
+    outlet: 'actions',
+  },
 ];

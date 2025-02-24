@@ -7,7 +7,7 @@ import { NavLink } from '../interfaces/link';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
   imports: [HeaderComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent {
   links = input<NavLink[]>();

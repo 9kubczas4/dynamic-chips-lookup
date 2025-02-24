@@ -5,8 +5,6 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-shops-layout',
   standalone: true,
   imports: [RouterOutlet],
-  template: `
-    <router-outlet />
-  `
+  template: ` <router-outlet /> `,
 })
 export class ShopsLayoutComponent {}

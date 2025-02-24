@@ -8,24 +8,72 @@ export class UsersApiService {
   private readonly usersState = inject(UsersState);
 
   private firstNames = [
-    'James', 'Emma', 'Liam', 'Olivia', 'Noah',
-    'Ava', 'William', 'Sophia', 'Lucas', 'Isabella',
-    'Henry', 'Mia', 'Theodore', 'Charlotte', 'Jack',
-    'Amelia', 'Benjamin', 'Harper', 'Oliver', 'Evelyn'
+    'James',
+    'Emma',
+    'Liam',
+    'Olivia',
+    'Noah',
+    'Ava',
+    'William',
+    'Sophia',
+    'Lucas',
+    'Isabella',
+    'Henry',
+    'Mia',
+    'Theodore',
+    'Charlotte',
+    'Jack',
+    'Amelia',
+    'Benjamin',
+    'Harper',
+    'Oliver',
+    'Evelyn',
   ];
 
   private lastNames = [
-    'Smith', 'Johnson', 'Williams', 'Brown', 'Jones',
-    'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez',
-    'Anderson', 'Taylor', 'Thomas', 'Moore', 'Jackson',
-    'Martin', 'Lee', 'Thompson', 'White', 'Harris'
+    'Smith',
+    'Johnson',
+    'Williams',
+    'Brown',
+    'Jones',
+    'Garcia',
+    'Miller',
+    'Davis',
+    'Rodriguez',
+    'Martinez',
+    'Anderson',
+    'Taylor',
+    'Thomas',
+    'Moore',
+    'Jackson',
+    'Martin',
+    'Lee',
+    'Thompson',
+    'White',
+    'Harris',
   ];
 
   private cities = [
-    'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
-    'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose',
-    'Austin', 'Seattle', 'Denver', 'Boston', 'Nashville',
-    'Portland', 'Miami', 'Atlanta', 'San Francisco', 'Detroit'
+    'New York',
+    'Los Angeles',
+    'Chicago',
+    'Houston',
+    'Phoenix',
+    'Philadelphia',
+    'San Antonio',
+    'San Diego',
+    'Dallas',
+    'San Jose',
+    'Austin',
+    'Seattle',
+    'Denver',
+    'Boston',
+    'Nashville',
+    'Portland',
+    'Miami',
+    'Atlanta',
+    'San Francisco',
+    'Detroit',
   ];
 
   private states = [
@@ -38,12 +86,20 @@ export class UsersApiService {
     { name: 'Ohio', abbr: 'OH' },
     { name: 'Georgia', abbr: 'GA' },
     { name: 'Michigan', abbr: 'MI' },
-    { name: 'North Carolina', abbr: 'NC' }
+    { name: 'North Carolina', abbr: 'NC' },
   ];
 
   private streetNames = [
-    'Main Street', 'Oak Avenue', 'Maple Drive', 'Cedar Lane', 'Pine Road',
-    'Washington Street', 'Park Avenue', 'Lake Drive', 'Hill Road', 'River Street'
+    'Main Street',
+    'Oak Avenue',
+    'Maple Drive',
+    'Cedar Lane',
+    'Pine Road',
+    'Washington Street',
+    'Park Avenue',
+    'Lake Drive',
+    'Hill Road',
+    'River Street',
   ];
 
   private getRandomElement<T>(array: T[]): T {
@@ -66,33 +122,33 @@ export class UsersApiService {
   }
 
   getUsers(): Observable<User[]> {
-    return of(Array.from({ length: 10 }, (_, index) => {
-      const firstName = this.getRandomElement(this.firstNames);
-      const lastName = this.getRandomElement(this.lastNames);
-      const streetNumber = this.generateStreetNumber();
-      const streetName = this.getRandomElement(this.streetNames);
-      const state = this.getRandomElement(this.states);
+    return of(
+      Array.from({ length: 10 }, (_, index) => {
+        const firstName = this.getRandomElement(this.firstNames);
+        const lastName = this.getRandomElement(this.lastNames);
+        const streetNumber = this.generateStreetNumber();
+        const streetName = this.getRandomElement(this.streetNames);
+        const state = this.getRandomElement(this.states);
 
-      return {
-        id: `user-${index + 1}`,
-        firstName,
-        lastName,
-        email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@example.com`,
-        phone: this.generatePhoneNumber(),
-        address: `${streetNumber} ${streetName}`,
-        city: this.getRandomElement(this.cities),
-        state: state.abbr,
-        zip: this.generateZipCode()
-      };
-    })).pipe(
-      tap((users) => this.usersState.setUsers(users))
-    );
+        return {
+          id: `user-${index + 1}`,
+          firstName,
+          lastName,
+          email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@example.com`,
+          phone: this.generatePhoneNumber(),
+          address: `${streetNumber} ${streetName}`,
+          city: this.getRandomElement(this.cities),
+          state: state.abbr,
+          zip: this.generateZipCode(),
+        };
+      })
+    ).pipe(tap(users => this.usersState.setUsers(users)));
   }
 
   createUser(user: Omit<User, 'id'>): Observable<User> {
     const newUser: User = {
       ...user,
-      id: `user-${Date.now()}`  // Generate a unique ID
+      id: `user-${Date.now()}`, // Generate a unique ID
     };
 
     this.usersState.addUser(newUser);

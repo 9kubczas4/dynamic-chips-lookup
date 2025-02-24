@@ -10,20 +10,36 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CityLookupComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
   templateUrl: './city-lookup.component.html',
-  styleUrls: ['./city-lookup.component.scss']
+  styleUrls: ['./city-lookup.component.scss'],
 })
-export class CityLookupComponent  implements ControlValueAccessor, AfterViewInit {
+export class CityLookupComponent implements ControlValueAccessor, AfterViewInit {
   private readonly elementRef = inject(ElementRef);
 
   cities = [
-    'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
-    'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose',
-    'Austin', 'Seattle', 'Denver', 'Boston', 'Nashville',
-    'Portland', 'Miami', 'Atlanta', 'San Francisco', 'Detroit'
+    'New York',
+    'Los Angeles',
+    'Chicago',
+    'Houston',
+    'Phoenix',
+    'Philadelphia',
+    'San Antonio',
+    'San Diego',
+    'Dallas',
+    'San Jose',
+    'Austin',
+    'Seattle',
+    'Denver',
+    'Boston',
+    'Nashville',
+    'Portland',
+    'Miami',
+    'Atlanta',
+    'San Francisco',
+    'Detroit',
   ];
 
   value: string | null = null;
@@ -53,7 +69,7 @@ export class CityLookupComponent  implements ControlValueAccessor, AfterViewInit
       const containerRect = container.getBoundingClientRect();
       const chipHeight = chips[0].getBoundingClientRect().height;
       const maxRows = 3;
-      const maxY = containerRect.top + (chipHeight * maxRows);
+      const maxY = containerRect.top + chipHeight * maxRows;
 
       let visibleChips = 0;
 

@@ -8,9 +8,8 @@ describe('CityLookupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CityLookupComponent]
-    })
-    .compileComponents();
+      imports: [CityLookupComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CityLookupComponent);
     component = fixture.componentInstance;

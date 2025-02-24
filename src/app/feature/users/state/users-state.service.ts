@@ -9,7 +9,7 @@ export class UsersState {
   users = this._users.asReadonly();
 
   addUser(newUser: User) {
-    this._users.update((users) => [...users, newUser]);
+    this._users.update(users => [...users, newUser]);
   }
 
   setUsers(users: User[]): void {

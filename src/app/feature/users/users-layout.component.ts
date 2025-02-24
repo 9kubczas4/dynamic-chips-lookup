@@ -28,9 +28,9 @@ import { take } from 'rxjs';
       :host {
         width: 100%;
       }
-    `
+    `,
   ],
-  providers: [UsersState, UsersApiService, MessageService]
+  providers: [UsersState, UsersApiService, MessageService],
 })
 export class UsersLayoutComponent {
   private readonly destroyRef = inject(DestroyRef);
@@ -39,15 +39,18 @@ export class UsersLayoutComponent {
   private readonly usersApi = inject(UsersApiService);
   private readonly usersState = inject(UsersState);
   ngOnInit(): void {
-    this.usersApi.getUsers().pipe(take(1), takeUntilDestroyed(this.destroyRef)).subscribe((users) => {
-      this.usersState.setUsers(users);
-    });
+    this.usersApi
+      .getUsers()
+      .pipe(take(1), takeUntilDestroyed(this.destroyRef))
+      .subscribe(users => {
+        this.usersState.setUsers(users);
+      });
 
     this.serviceBus.refresh$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.messageService.add({
         severity: 'info',
         summary: 'Refresh',
-        detail: 'Users list refreshed'
+        detail: 'Users list refreshed',
       });
     });
 
@@ -55,7 +58,7 @@ export class UsersLayoutComponent {
       this.messageService.add({
         severity: 'info',
         summary: 'Info',
-        detail: 'User info'
+        detail: 'User info',
       });
     });
 
@@ -63,7 +66,7 @@ export class UsersLayoutComponent {
       this.messageService.add({
         severity: 'success',
         summary: 'Create',
-        detail: 'User created'
+        detail: 'User created',
       });
     });
   }
